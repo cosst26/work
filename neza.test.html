@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>哪吒电影宇宙：技术与文化的革新</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <style>
+        /* CSS样式：导航、轮播图、内容区块 */
+        body { font-family: '微软雅黑'; background: #f0f0f0; }
+        .nav { background: #1a1e21; padding: 20px; color: white; }
+        .nav a { color: white; margin: 0 15px; text-decoration: none; }
+        .banner { width: 100%; height: 400px; object-fit: cover; }
+        .section { padding: 40px; margin: 20px; background: white; border-radius: 10px; }
+        .timeline { border-left: 2px solid #e74c3c; padding-left: 20px; }
+        .tech-card { display: flex; margin: 20px 0; align-items: center; }
+        .tech-card img { width: 200px; margin-right: 20px; }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 导航栏 -->
+        <nav class="nav">
+            <a href="#history">制作历史</a>
+            <a href="#team">主创团队</a>
+            <a href="#tech">技术突破</a>
+            <a href="#meaning">历史意义</a>
+        </nav>
+
+        <!-- 轮播图 -->
+        <img class="banner" :src="currentBanner" @click="nextBanner">
+        
+        <!-- 制作历史 -->
+        <section id="history" class="section">
+            <h2>哪吒形象的百年演变</h2>
+            <div class="timeline">
+                <div v-for="event in timeline" :key="event.year">
+                    <h3>{{ event.year }} - {{ event.title }}</h3>
+                    <p>{{ event.desc }}</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 主创团队 -->
+        <section id="team" class="section">
+            <h2>核心创作力量</h2>
+            <div v-for="member in team" :key="member.name">
+                <h3>{{ member.name }} - {{ member.role }}</h3>
+                <p>{{ member.desc }}</p>
+            </div>
+        </section>
+
+        <!-- 技术突破 -->
+        <section id="tech" class="section">
+            <h2>技术背后的“万龙甲”</h2>
+            <div class="tech-card" v-for="tech in technologies" :key="tech.name">
+                <img :src="tech.img" alt="技术示例">
+                <div>
+                    <h3>{{ tech.name }}</h3>
+                    <p>{{ tech.desc }}</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 历史意义 -->
+        <section id="meaning" class="section">
+            <h2>国漫崛起的里程碑</h2>
+            <ul>
+                <li v-for="point in significance" :key="point">{{ point }}</li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                currentBanner: 0,
+                banners: ['banner1.jpg', 'banner2.jpg', 'banner3.jpg'],
+                timeline: [
+                    { year: '1961', title: '《大闹天宫》福娃哪吒', desc: '上海美术电影制片厂首次将哪吒设计为圆润年画娃娃形象:cite[1]:cite[5]' },
+                    { year: '1979', title: '《哪吒闹海》经典诞生', desc: '豆瓣9.2分神作，以京剧脸谱和传统壁画风格奠定美学标杆:cite[1]' },
+                    { year: '2019', title: '《魔童降世》颠覆创新', desc: '票房破50亿，烟熏妆哪吒引发“我命由我”的文化共鸣:cite[5]:cite[9]' },
+                    { year: '2025', title: '《魔童闹海》百亿突破', desc: '全球首部破百亿动画电影，特效镜头占比80%:cite[3]:cite[7]' }
+                ],
+                team: [
+                    { name: '饺子', role: '导演', desc: '从医学生转型动画导演，以《打，打个大西瓜》成名，坚持“死磕每一帧”:cite[7]:cite[10]' },
+                    { name: '刘文章', role: '制片人', desc: '推动138家中国公司协作，建立动画工业化标准流程:cite[7]' },
+                    { name: '红鲤动画', role: '特效团队', desc: '耗时1.5年完成山景与鸟群特效，云渲染技术提升效率300%:cite[2]' }
+                ],
+                technologies: [
+                    { name: '云端渲染', img: 'cloud.jpg', desc: '瑞云科技调度数千台服务器，将单帧10小时渲染压缩至1小时:cite[2]' },
+                    { name: '动态粒子特效', img: 'particle.jpg', desc: '洪流对撞场景20秒镜头打磨8个月，模拟物理精度达影视级:cite[7]' },
+                    { name: '文化元素数字化', img: 'culture.jpg', desc: '三星堆青铜器融入结界兽设计，侗族大歌配乐增强东方美学:cite[10]' }
+                ],
+                significance: [
+                    '工业化标杆：138家公司、4000人协作，验证中国动画电影工业化能力:cite[7]',
+                    '文化输出：北美预售破华语片纪录，民族乐器与神话重构获国际认可:cite[10]',
+                    '精神符号：从“反抗命运”到“打破规则”，深化当代青年价值观表达:cite[5]:cite[9]'
+                ]
+            },
+            methods: {
+                nextBanner() {
+                    this.currentBanner = (this.currentBanner + 1) % this.banners.length;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
